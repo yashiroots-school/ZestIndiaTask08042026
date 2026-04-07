@@ -1,0 +1,29 @@
+
+CREATE TABLE Students (
+ Id INT IDENTITY PRIMARY KEY,
+ Name NVARCHAR(100),
+ Email NVARCHAR(100),
+ Age INT,
+ Course NVARCHAR(100),
+ CreatedDate DATETIME DEFAULT GETDATE()
+)
+
+GO
+
+CREATE PROCEDURE usp_GetStudents AS
+BEGIN
+ SELECT * FROM Students
+END
+
+GO
+
+CREATE PROCEDURE usp_AddStudent
+ @Name NVARCHAR(100),
+ @Email NVARCHAR(100),
+ @Age INT,
+ @Course NVARCHAR(100)
+AS
+BEGIN
+ INSERT INTO Students(Name,Email,Age,Course)
+ VALUES(@Name,@Email,@Age,@Course)
+END
